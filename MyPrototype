@@ -1,0 +1,47 @@
+static void Main(string[] args)
+        {
+        begin:
+            Random rand = new Random();
+            int a = 1;
+            int[] array1 = new int[a];
+
+        start:
+            Array.Resize<int>(ref array1, a);
+            for (int i = 0; i < array1.Length; i++)
+            {
+                array1.SetValue(rand.Next(1, 10), array1.Length - 1);
+            }
+            for (int i = 0; i < array1.Length; i++)
+            {
+                Console.WriteLine(array1[i]);
+            }
+            Console.WriteLine("---------------------------------------------------------------------------------------------------");
+
+            int[] array2 = new int[a];
+            for (int i = 0; i < array2.Length; i++)
+			{
+                int.TryParse(Console.ReadLine(), out array2[i]); // array2.SetValue(Convert.ToInt32(Console.ReadLine()), i);
+            }
+            Console.WriteLine("---------------------------------------------------------------------------------------------------");
+
+            int x = 0;
+        comp:
+            if (array1[x] == array2[x])
+            {
+                if (x + 1 < a)
+                {
+                    x++;
+                    goto comp;
+                }
+                else
+                {
+                    a++;
+                    goto start;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Wrong order!");
+                goto begin;
+            }
+        }
